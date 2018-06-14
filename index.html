@@ -1,11 +1,13 @@
 <html>
   <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
-    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
-    <script src="https://unpkg.com/@tensorflow-models/posenet"></script>
   </head>
   <body>
-    Some camera feeds
+    <device type="media" onchange="update(this.data)"></device>
+    <video autoplay></video>
+    <script>
+      function update(stream) {
+        document.querySelector('video').src = stream.url;
+      }
+    </script>
   </body>
-  <script src="test.js"></script>
 </html>

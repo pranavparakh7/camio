@@ -22,9 +22,14 @@
         // Other browsers will fall back to image/png
         img.src = canvas.toDataURL('image/webp');
       };
-
+      const constraints = {
+        video: true
+      };
       function handleSuccess(stream) {
         video.srcObject = stream;
+      }
+      function handleError(error) {
+        alert('Reeeejected!', error);
       }
 
       navigator.mediaDevices.getUserMedia(constraints).

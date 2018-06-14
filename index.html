@@ -18,9 +18,11 @@
     function handleError(error) {
       alert('Reeeejected!', error);
     }
+    var hdConstraints = {
+      video: {width: {min: 1280}, height: {min: 720}}
+    };
 
-    navigator.mediaDevices.getUserMedia(constraints).
-      then(handleSuccess).catch(handleError);
+    navigator.mediaDevices.getUserMedia(hdConstraints, successCallback, errorCallback);
     </script>
   </body>
 </html>

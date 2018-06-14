@@ -2,22 +2,33 @@
   <head>
   </head>
   <body>
+    <button id="screenshot-button">Click me</button>
     <device type="media" onchange="update(this.data)"></device>
-    <video autoplay></video>
+    <video id="screenshot-video" autoplay></video>
+    <img id="screenshot-img" src="">
+    <canvas style="display:none;"></canvas>
+
     <script>
-    const constraints = {
-      video: true
-    };
+      const button = document.querySelector('#screenshot-button');
+      const img = document.querySelector('#screenshot-img');
+      const video = document.querySelector('#screenshot-video');
 
-    const video = document.querySelector('video');
+      const canvas = document.createElement('canvas');
 
-    function handleSuccess(stream) {
-      video.srcObject = stream;
-    }
+      button.onclick = video.onclick = function() {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0);
+        // Other browsers will fall back to image/png
+        img.src = canvas.toDataURL('image/webp');
+      };
 
-    function handleError(error) {
-      alert('Reeeejected!', error);
-    }
+      function handleSuccess(stream) {
+        video.srcObject = stream;
+      }
+
+      navigator.mediaDevices.getUserMedia(constraints).
+          then(handleSuccess).catch(handleError);
     </script>
   </body>
 </html>

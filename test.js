@@ -1,5 +1,5 @@
 const button = document.querySelector('#screenshot-button');
-const img = document.createElement(img);
+const img = document.createElement('img');
 const video = document.querySelector('#screenshot-video');
 const canvas = document.createElement('canvas');
 var imageScaleFactor = 0.5;

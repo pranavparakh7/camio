@@ -15,6 +15,7 @@ button.onclick = video.onclick = function() {
   posenet.load().then(function(net){
     return net.estimateSinglePose(img, imageScaleFactor, flipHorizontal, outputStride)
   }).then(function(pose){
+    console.log(pose.keypoints);
     draw(pose.keypoints);
   })
 };
@@ -38,11 +39,11 @@ function setup() {
 
 function draw(keypoints) {
   createCanvas(canvas.width,canvas.height);
-  background(001);
+  background(200);
   noSmooth();
 
   // Draw white points
-  stroke(120);
+  stroke(0);
 
   for(var i in keypoints){
     strokeWeight(4);

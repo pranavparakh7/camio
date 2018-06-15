@@ -1,9 +1,12 @@
 <html>
   <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+    <script src="https://unpkg.com/@tensorflow-models/posenet"></script>
   </head>
   <body>
     <device type="media" onchange="update(this.data)"></device>
-    <video id="screenshot-video" autoplay></video>
+    <!--video id="screenshot-video" autoplay></video-->
     <button id="screenshot-button">Get Pose</button>
     <img id="screenshot-img" src="">
     <canvas style="display:none;"></canvas>

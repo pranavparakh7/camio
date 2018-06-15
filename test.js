@@ -1,8 +1,10 @@
 const button = document.querySelector('#screenshot-button');
-const img = document.querySelector('#screenshot-img');
+const img = document.createElement(img);
 const video = document.querySelector('#screenshot-video');
 const canvas = document.createElement('canvas');
-var w,h;
+var imageScaleFactor = 0.5;
+var outputStride = 16;
+var flipHorizontal = false;
 
 button.onclick = video.onclick = function() {
   canvas.width = video.videoWidth;
@@ -10,6 +12,11 @@ button.onclick = video.onclick = function() {
   canvas.getContext('2d').drawImage(video, 0, 0);
   // Other browsers will fall back to image/png
   img.src = canvas.toDataURL('image/webp');
+  posenet.load().then(function(net){
+    return net.estimateSinglePose(img, imageScaleFactor, flipHorizontal, outputStride)
+  }).then(function(pose){
+    draw(pose.keypoints);
+  })
 };
 const constraints = {
   video: true
@@ -24,19 +31,21 @@ function handleError(error) {
 navigator.mediaDevices.getUserMedia(constraints).
     then(handleSuccess).catch(handleError);
 
+
 function setup() {
+  noLoop();
 }
 
 function draw(keypoints) {
   createCanvas(canvas.width,canvas.height);
-  background(0);
-  /*noSmooth();
+  background(001);
+  noSmooth();
 
   // Draw white points
-  stroke(255);
+  stroke(120);
 
   for(var i in keypoints){
     strokeWeight(4);
     point(keypoints[i].position.x,keypoints[i].position.y);
-  }*/
+  }
 }

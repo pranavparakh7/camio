@@ -33,7 +33,7 @@ function setup() {
 }
 
 function draw(keypoints) {
-  createCanvas(w,h);
+  createCanvas(400,400);
   background(0);
   /*noSmooth();
 

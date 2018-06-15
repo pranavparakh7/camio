@@ -15,7 +15,7 @@ button.onclick = video.onclick = function() {
   posenet.load().then(function(net){
     return net.estimateSinglePose(img, imageScaleFactor, flipHorizontal, outputStride)
   }).then(function(pose){
-    console.log(pose.keypoints);
+    alert(pose.keypoints);
     draw(pose.keypoints);
   })
 };

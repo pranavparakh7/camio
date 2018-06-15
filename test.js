@@ -25,7 +25,6 @@ navigator.mediaDevices.getUserMedia(constraints).
     then(handleSuccess).catch(handleError);
 
 function setup() {
-  noLoop();
 }
 
 function draw(keypoints) {

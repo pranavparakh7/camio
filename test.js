@@ -11,8 +11,8 @@ button.onclick = video.onclick = function() {
   // Other browsers will fall back to image/png
   img.src = canvas.toDataURL('image/webp');
   img.onload = function(){
-     w = imageElement.naturalWidth;
-     h = imageElement.naturalHeight;
+     w = img.naturalWidth;
+     h = img.naturalHeight;
   }
 };
 const constraints = {

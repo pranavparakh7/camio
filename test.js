@@ -10,10 +10,6 @@ button.onclick = video.onclick = function() {
   canvas.getContext('2d').drawImage(video, 0, 0);
   // Other browsers will fall back to image/png
   img.src = canvas.toDataURL('image/webp');
-  img.onload = function(){
-     w = img.naturalWidth;
-     h = img.naturalHeight;
-  }
 };
 const constraints = {
   video: true
@@ -33,7 +29,7 @@ function setup() {
 }
 
 function draw(keypoints) {
-  createCanvas(400,400);
+  createCanvas(canvas.width,canvas.height);
   background(0);
   /*noSmooth();
 

@@ -11,13 +11,18 @@ button.onclick = video.onclick = function() {
   canvas.height = video.videoHeight;
   canvas.getContext('2d').drawImage(video, 0, 0);
   // Other browsers will fall back to image/png
-  img.src = canvas.toDataURL('image/webp');
-  posenet.load().then(function(net){
-    return net.estimateSinglePose(img, imageScaleFactor, flipHorizontal, outputStride)
-  }).then(function(pose){
-    alert(pose.keypoints);
-    draw(pose.keypoints);
-  })
+  var imgPromise = new Promise(function(resolve, reject) {
+    img.src = canvas.toDataURL('image/webp');
+  });
+  imgPromise.then(()=>{
+    posenet.load().then(function(net){
+      return net.estimateSinglePose(img, imageScaleFactor, flipHorizontal, outputStride)
+    }).then(function(pose){
+      alert(pose.keypoints);
+      createCanvas(canvas.width,canvas.height);
+      draw(pose.keypoints);
+    })
+  });
 };
 const constraints = {
   video: true
@@ -38,7 +43,7 @@ function setup() {
 }
 
 function draw(keypoints) {
-  createCanvas(canvas.width,canvas.height);
+
   background(200);
   noSmooth();
 
